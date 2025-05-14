@@ -1,6 +1,6 @@
 // auth.js
 const usuarios = [
-  { usuario: 'Javier', clave: '12345' }
+  { usuario: 'javier', clave: '1234' }
 ];
 
 let usuarioActivo = null;
