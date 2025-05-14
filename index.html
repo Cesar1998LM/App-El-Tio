@@ -1,8 +1,3 @@
-<!--
-  Control de Ventas - App nativa (HTML/CSS/JavaScript)
-  Responsive, moderno e interactivo
-  Documentado para fácil modificación
--->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,228 +5,143 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Michel el Tío - Control de Ventas</title>
   <style>
-    /* Variables de tema y gradientes (Azul vibrante) */
-    :root {
-      --primary: #1e3a8a;
-      --secondary: #3b82f6;
-      --dark: #1f2937;
-      --light: #f3f4f6;
-      --white: #ffffff;
-      --shadow: rgba(0,0,0,0.1);
-      --transition: 0.3s ease;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: var(--light); color: var(--dark); }
-    .container { max-width: 1200px; margin: auto; padding: 1rem; }
-
-    /* Header con gradiente y logo */
-    header { display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: 1rem; margin-bottom: 1.5rem; animation: slideDown 0.5s; }
-    header img { height: 50px; }
-    header h1 { color: var(--white); font-size: 2.2rem; letter-spacing: 1px; }
-
-    /* Animaciones */
-    @keyframes slideDown { from { opacity: 0; transform: translateY(-20px);} to { opacity:1; transform: translateY(0);} }
-    @keyframes fadeIn { from { opacity: 0;} to { opacity:1;} }
-
-    /* Navegación categorías */
-    nav { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem; animation: fadeIn 0.8s; }
-    .tab { padding: 0.6rem 1.2rem; background: var(--white); border-radius: 2rem; cursor: pointer; box-shadow: 0 2px 8px var(--shadow); transition: background var(--transition), transform var(--transition); }
-    .tab.active, .tab:hover { background: var(--primary); color: var(--white); transform: scale(1.05); }
-
-    /* Sección productos */
-    #productos { display: grid; grid-template-columns: repeat(auto-fill,minmax(150px,1fr)); gap: 1rem; animation: fadeIn 0.8s; }
-    .producto { background: var(--white); border-radius: 1rem; padding: 1rem; text-align: center; box-shadow: 0 4px 12px var(--shadow); transition: transform var(--transition), box-shadow var(--transition); }
-    .producto:hover { transform: translateY(-5px); box-shadow: 0 8px 20px var(--shadow); }
-    .producto button { margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: linear-gradient(45deg, var(--primary), var(--secondary)); color: var(--white); border-radius: 0.5rem; cursor: pointer; transition: opacity var(--transition); }
-    .producto button:hover { opacity: 0.9; }
-
-    /* Carrito y ticket */
-    .flex { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
-    .card { background: var(--white); padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 12px var(--shadow); flex: 1 1 300px; animation: fadeIn 0.8s; }
-    .card h2 { margin-bottom: 1rem; color: var(--primary); }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 0.8rem; border-bottom: 1px solid #e5e7eb; }
-    th { background: var(--primary); color: var(--white); }
-    .remove-btn { background: transparent; border: none; color: #ef4444; cursor: pointer; font-size: 1.1rem; }
-
-    /* Botones principales */
-    .btn-main { display: inline-block; padding: 0.8rem 1.5rem; background: linear-gradient(45deg, var(--secondary), var(--primary)); color: var(--white); border: none; border-radius: 2rem; cursor: pointer; font-size: 1rem; transition: transform var(--transition), box-shadow var(--transition); }
-    .btn-main:hover { transform: scale(1.05); box-shadow: 0 6px 16px var(--shadow); }
-
-    /* Modal Waffle */
-    #modal-waffle { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; }
-    #modal-content { background: var(--white); padding: 2rem; border-radius: 1rem; width: 90%; max-width: 400px; }
-    #modal-content h3 { margin-bottom: 1rem; color: var(--primary); }
-    #modal-content select { width: 100%; padding: 0.5rem; margin-bottom: 0.5rem; border-radius: 0.5rem; border: 1px solid #ccc; }
-
-    /* Responsive */
-    @media (max-width: 768px) { .flex { flex-direction: column; } nav { flex-wrap: wrap; } }
+    :root { --primary:#1e3a8a;--secondary:#3b82f6;--dark:#1f2937;--light:#f3f4f6;--white:#fff;--shadow:rgba(0,0,0,0.1);--transition:.3s; }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:Poppins,sans-serif;background:var(--light);color:var(--dark);}
+    button{cursor:pointer;}
+    /* Login */
+    #login{display:none;height:100vh;background:var(--light);}
+    .login-container{max-width:400px;margin:auto;padding:2rem;background:var(--white);border-radius:1rem;box-shadow:0 4px 12px var(--shadow);position:relative;top:50%;transform:translateY(-50%);text-align:center;}
+    .login-container img{height:80px;margin-bottom:1rem;}
+    .login-container h2{color:var(--primary);margin-bottom:1rem;}
+    .login-container input{width:100%;padding:.75rem;margin-bottom:.75rem;border:1px solid #ccc;border-radius:.5rem;}
+    .login-container button{width:100%;padding:.75rem;background:var(--primary);color:var(--white);border:none;border-radius:.5rem;font-size:1rem;}
+    .login-error{color:#ef4444;visibility:hidden;margin-top:.5rem;}
+    /* App */
+    #app{display:none;}
+    header{display:flex;align-items:center;justify-content:space-between;padding:1rem;background:linear-gradient(90deg,var(--primary),var(--secondary));}
+    header img{height:50px;}
+    header .user-info{color:var(--white);font-weight:bold;}
+    header button{background:var(--white);color:var(--primary);padding:.5rem 1rem;border:none;border-radius:.5rem;}
+    .container{max-width:1200px;margin:auto;padding:1rem;}
+    nav{display:flex;justify-content:center;gap:1rem;margin:1rem 0;}
+    .tab{padding:.6rem 1.2rem;background:var(--white);border-radius:2rem;box-shadow:0 2px 8px var(--shadow);transition:var(--transition);}    
+    .tab.active,.tab:hover{background:var(--primary);color:var(--white);}
+    #productos{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem;}
+    .producto{background:var(--white);padding:1rem;border-radius:1rem;box-shadow:0 4px 12px var(--shadow);text-align:center;transition:var(--transition);}
+    .producto:hover{transform:translateY(-5px);}
+    .producto h3{margin-bottom:.5rem;}
+    .producto button{margin-top:.5rem;padding:.5rem 1rem;background:var(--primary);color:var(--white);border:none;border-radius:.5rem;}
+    .flex{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.5rem;}
+    .card{background:var(--white);padding:1rem;border-radius:1rem;box-shadow:0 4px 12px var(--shadow);flex:1 1 300px;}
+    .card h2{margin-bottom:1rem;color:var(--primary);}
+    table{width:100%;border-collapse:collapse;margin-bottom:.5rem;}
+    th,td{padding:.6rem;border-bottom:1px solid #eee;}
+    th{background:var(--primary);color:var(--white);}
+    .remove-btn{background:transparent;border:none;color:#ef4444;font-size:1.1rem;}
+    .btn-main{margin-top:.5rem;padding:.7rem 1.2rem;background:var(--secondary);color:var(--white);border:none;border-radius:1rem;transition:var(--transition);}
+    .btn-main:hover{background:var(--primary);}
+    /* Modal */
+    #modal-waffle{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);align-items:center;justify-content:center;}
+    #modal-content{background:var(--white);padding:2rem;border-radius:1rem;box-shadow:0 4px 12px var(--shadow);max-width:400px;width:90%;}
+    #modal-content h3{margin-bottom:1rem;color:var(--primary);}
+    #modal-content select{width:100%;padding:.5rem;margin-bottom:.5rem;border:1px solid #ccc;border-radius:.5rem;}
+    @media(max-width:768px){nav{flex-wrap:wrap;} .flex{flex-direction:column;}}
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Michel el Tío</h1>
+  <div id="login">
+    <div class="login-container">
       <img src="EL_TIO.jpg" alt="Logo">
+      <h2>Iniciar Sesión</h2>
+      <input id="usuario" type="text" placeholder="Usuario">
+      <input id="clave" type="password" placeholder="Contraseña">
+      <button id="btn-login">Entrar</button>
+      <p id="login-error" class="login-error">Usuario o clave incorrectos</p>
+    </div>
+  </div>
+  <div id="app">
+    <header>
+      <img src="EL_TIO.jpg" alt="Logo">
+      <div class="user-info">Usuario: <span id="usuario-actual"></span></div>
+      <button id="btn-logout">Cerrar Sesión</button>
     </header>
-
-    <nav id="categorias"></nav>
-    <section id="productos"></section>
-
-    <div class="flex">
-      <div class="card">
-        <h2>Carrito</h2>
-        <table>
-          <thead><tr><th>Producto</th><th>Cant.</th><th>Subtotal</th><th></th></tr></thead>
-          <tbody id="carrito-body"></tbody>
-        </table>
-        <p><strong>Total:</strong> $<span id="total">0.00</span></p>
-        <button id="gen-ticket" class="btn-main">Generar Ticket</button>
-        <button id="print-ticket" class="btn-main" style="margin-left:0.5rem; background:#2563eb;">Imprimir Ticket</button>
-      </div>
-      <div class="card">
-        <h2>Ticket</h2>
-        <div id="ticket">Aquí aparecerá el ticket.</div>
-      </div>
-      <div class="card">
-        <h2>Corte del Día</h2>
-        <p><strong>Ventas hoy:</strong> $<span id="ventas-dia">0.00</span></p>
-        <button id="print-daily" class="btn-main" style="margin-top:0.5rem; background:#2563eb;">Imprimir Resumen Diario</button>
-        <button id="clear-day" class="btn-main" style="margin-top:0.5rem; background:#ef4444;">Borrar y Guardar PDF</button>
+    <div class="container">
+      <nav id="categorias"></nav>
+      <section id="productos"></section>
+      <div class="flex">
+        <div class="card">
+          <h2>Carrito</h2>
+          <table>
+            <thead><tr><th>Producto</th><th>Cant.</th><th>Subtotal</th><th></th></tr></thead>
+            <tbody id="carrito-body"></tbody>
+          </table>
+          <p><strong>Total:</strong> $<span id="total">0.00</span></p>
+          <button id="gen-ticket" class="btn-main">Generar Ticket</button>
+          <button id="print-ticket" class="btn-main">Imprimir Ticket</button>
+        </div>
+        <div class="card">
+          <h2>Ticket</h2>
+          <pre id="ticket">Aquí aparecerá el ticket.</pre>
+        </div>
+        <div class="card">
+          <h2>Corte del Día</h2>
+          <p><strong>Ventas hoy:</strong> $<span id="ventas-dia">0.00</span></p>
+          <button id="print-daily" class="btn-main">Imprimir Resumen Diario</button>
+          <button id="clear-day" class="btn-main" style="background:#ef4444;">Borrar y Guardar PDF</button>
+        </div>
       </div>
     </div>
   </div>
-
-  <!-- Modal Waffle -->
   <div id="modal-waffle">
     <div id="modal-content">
       <h3>Configurar Waffles</h3>
-      <label>2 Coberturas:</label>
-      <select id="cov1"></select>
-      <select id="cov2"></select>
-      <label>Fruta:</label>
-      <select id="fruit"></select>
-      <label>Topping:</label>
-      <select id="topping"></select>
-      <label>Bola de Helado:</label>
-      <select id="ice"></select>
+      <label>2 Coberturas:</label><select id="cov1"></select><select id="cov2"></select>
+      <label>Fruta:</label><select id="fruit"></select>
+      <label>Topping:</label><select id="topping"></select>
+      <label>Bola de Helado:</label><select id="ice"></select>
       <button id="add-waffle" class="btn-main">Agregar Waffle</button>
-      <button id="close-waffle" class="btn-main" style="background:#ef4444; margin-left:0.5rem;">Cancelar</button>
+      <button id="close-waffle" class="btn-main" style="background:#ef4444;">Cancelar</button>
     </div>
   </div>
-
   <script>
-    const menu = {
-      COMIDA: ['Hamburguesas','Alitas','Fajitas de pollo','Costillas','Banderillas','Hot dogs'],
-      ALCOHOLICAS: ['Micheladas','Caribes preparadas','SKY preparadas','Mojitos','Pitufos','Viñas','Piña Colada','New Mix Preparada','Cerillos','Pantera Rosa'],
-      SIN_ALCOHOL: ['Boing','Agua','Cafe','Refrescos'],
-      POSTRES: ['Pasteles','Platanos capeados','Platanos fritos','Platanos en Hojuela','Wafles']
-    };
-    const precios = { 'Hamburguesas':80,'Alitas':70,'Fajitas de pollo':100,'Costillas':120,'Banderillas':25,'Hot dogs':30,'Micheladas':50,'Caribes preparadas':60,'SKY preparadas':65,'Mojitos':55,'Pitufos':45,'Viñas':50,'Piña Colada':75,'New Mix Preparada':70,'Cerillos':35,'Pantera Rosa':40,'Boing':20,'Agua':15,'Cafe':25,'Refrescos':18,'Pasteles':50,'Platanos capeados':40,'Platanos fritos':38,'Platanos en Hojuela':35,'Wafles':90 };
-    const opciones = {
-      coberturas:['nutella','lechera','cajeta','hershey','queso philadelphia','miel de maple','mermelada de fresa'],
-      frutas:['kiwi','platano','fresa','frutos rojos','durazno'],
-      topping:['nuez','oreo','chispas de chocolate','chispas de colores'],
-      helado:['chocolate','fresa','vainilla']
-    };
-
-    const catEl = document.getElementById('categorias'), prodEl = document.getElementById('productos');
-    const cartBody = document.getElementById('carrito-body'), totalEl = document.getElementById('total');
-    const ticketEl = document.getElementById('ticket'), ventasDiaEl = document.getElementById('ventas-dia');
-    const genBtn = document.getElementById('gen-ticket'), printTicketBtn = document.getElementById('print-ticket');
-    const printDailyBtn = document.getElementById('print-daily'), clearDayBtn = document.getElementById('clear-day');
-    const modal = document.getElementById('modal-waffle'), cov1 = document.getElementById('cov1'), cov2 = document.getElementById('cov2');
-    const fruit = document.getElementById('fruit'), topping = document.getElementById('topping'), ice = document.getElementById('ice');
-    const addW = document.getElementById('add-waffle'), closeW = document.getElementById('close-waffle');
-
-    let carrito = [], ventasDia = 0, historialTickets = [], catActiva = 'COMIDA';
-
-    function initTabs() {
-      Object.keys(menu).forEach(c => {
-        const t = document.createElement('div'); t.className='tab'; t.textContent=c.replace('_',' ');
-        t.onclick = () => { catActiva=c; setActive(); renderProds(); };
-        catEl.appendChild(t);
-      }); setActive();
-    }
-    function setActive() { Array.from(catEl.children).forEach((t,i)=>t.classList.toggle('active', Object.keys(menu)[i]===catActiva)); }
-
-    function renderProds() {
-      prodEl.innerHTML='';
-      menu[catActiva].forEach(p => {
-        const d = document.createElement('div'); d.className='producto';
-        d.innerHTML = `<h3>${p}</h3><p>$${precios[p]}</p><button>Agregar</button>`;
-        d.querySelector('button').onclick = () => p==='Wafles'? openModal() : addCart(p);
-        prodEl.appendChild(d);
-      });
-    }
-
-    function openModal() {
-      [cov1,cov2].forEach(s=>{ s.innerHTML=''; opciones.coberturas.forEach(o=>s.add(new Option(o,o))); });
-      [fruit,topping,ice].forEach((s,i)=>{ s.innerHTML=''; opciones[['frutas','topping','helado'][i]].forEach(o=>s.add(new Option(o,o))); });
-      modal.style.display='flex';
-    }
-    addW.onclick = () => {
-      const desc = `Wafles (${cov1.value},${cov2.value};${fruit.value};${topping.value};${ice.value})`;
-      addCart(desc); modal.style.display='none';
-    };
-    closeW.onclick = () => modal.style.display='none';
-
-    function addCart(desc) {
-      const price = precios[Object.keys(precios).find(k=>desc.startsWith(k))] || precios['Wafles'];
-      carrito.push({desc, qty:1, subtotal:price}); renderCart();
-    }
-    function renderCart() {
-      cartBody.innerHTML=''; let tot=0;
-      carrito.forEach((it,i)=>{
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${it.desc}</td><td>${it.qty}</td><td>$${it.subtotal}</td><td><button class='remove-btn' onclick='removeItem(${i})'>×</button></td>`;
-        cartBody.appendChild(tr); tot+=it.subtotal;
-      });
-      totalEl.textContent = tot.toFixed(2);
-    }
-    window.removeItem = i => { carrito.splice(i,1); renderCart(); };
-
-    genBtn.onclick = () => {
-      if (!carrito.length) return alert('Carrito vacío');
-      let txt = '--- Ticket Michel el Tío ---\n';
-      carrito.forEach(it=> txt+=`${it.desc} = $${it.subtotal}\n`);
-      txt+= '---------------------------\nTOTAL: $'+totalEl.textContent;
-
-      historialTickets.push({ contenido:txt, total:parseFloat(totalEl.textContent), fecha:new Date().toLocaleString() });
-      ticketEl.textContent = txt;
-      ventasDia+=parseFloat(totalEl.textContent);
-      ventasDiaEl.textContent = ventasDia.toFixed(2);
-      carrito = [];
-      renderCart();
-    };
-
-    printTicketBtn.onclick = () => {
-      if (!ticketEl.textContent) return;
-      const w = window.open('');
-      w.document.write(`<pre>${ticketEl.textContent}</pre>`);
-      w.print(); w.close();
-    };
-
-    printDailyBtn.onclick = () => {
-      if (!historialTickets.length) return alert('No hay tickets para imprimir.');
-      let resumen = '<h2>Resumen Diario - Michel el Tío</h2><p>'+new Date().toLocaleDateString()+'</p>';
-      historialTickets.forEach((t,i)=> resumen+=`<hr><p><strong>Ticket ${i+1}</strong><br>${t.contenido.replace(/\n/g,'<br>')}</p>`);
-      resumen+=`<hr><h3>Total del Día: $${ventasDia.toFixed(2)}</h3>`;
-      const w = window.open(''); w.document.write(resumen); w.print(); w.close();
-    };
-
-    clearDayBtn.onclick = () => {
-      if (!historialTickets.length) return alert('No hay datos que borrar.');
-      // imprimir resumen antes de eliminar
-      printDailyBtn.onclick();
-      // limpiar datos
-      historialTickets = [];
-      ventasDia = 0;
-      ventasDiaEl.textContent = '0.00';
-      ticketEl.textContent = 'Aquí aparecerá el ticket.';
-    };
-
-    initTabs(); renderProds();
+    // Autenticación
+    const usuarios=[{usuario:'michel',clave:'1234'},{usuario:'equipo',clave:'abcd'}];
+    let usuarioActivo=null;
+    const loginDiv=document.getElementById('login'),appDiv=document.getElementById('app'),errLabel=document.getElementById('login-error');
+    function mostrarLogin(){loginDiv.style.display='block';appDiv.style.display='none';}
+    function mostrarApp(){loginDiv.style.display='none';appDiv.style.display='block';}
+    function cargarSesion(){const u=JSON.parse(localStorage.getItem('usuarioActivo'));if(u){usuarioActivo=u;document.getElementById('usuario-actual').innerText=u.usuario;mostrarApp();}else mostrarLogin();}
+    document.getElementById('btn-login').onclick=()=>{const u=document.getElementById('usuario').value,p=document.getElementById('clave').value,match=usuarios.find(x=>x.usuario===u&&x.clave===p);if(match){usuarioActivo=match;localStorage.setItem('usuarioActivo',JSON.stringify(match));document.getElementById('usuario-actual').innerText=u;errLabel.style.visibility='hidden';mostrarApp();}else{errLabel.style.visibility='visible';}};
+    document.getElementById('btn-logout').onclick=()=>{localStorage.removeItem('usuarioActivo');usuarioActivo=null;mostrarLogin();};
+    cargarSesion();
+    // Datos
+    const menu={COMIDA:['Hamburguesas','Alitas','Fajitas de pollo','Costillas','Banderillas','Hot dogs'],ALCOHOLICAS:['Micheladas','Caribes preparadas','SKY preparadas','Mojitos','Pitufos','Viñas','Piña Colada','New Mix Preparada','Cerillos','Pantera Rosa'],SIN_ALCOHOL:['Boing','Agua','Cafe','Refrescos'],POSTRES:['Pasteles','Platanos capeados','Platanos fritos','Platanos en Hojuela','Wafles']};
+    const precios={'Hamburguesas':80,'Alitas':70,'Fajitas de pollo':100,'Costillas':120,'Banderillas':25,'Hot dogs':30,'Micheladas':50,'Caribes preparadas':60,'SKY preparadas':65,'Mojitos':55,'Pitufos':45,'Viñas':50,'Piña Colada':75,'New Mix Preparada':70,'Cerillos':35,'Pantera Rosa':40,'Boing':20,'Agua':15,'Cafe':25,'Refrescos':18,'Pasteles':50,'Platanos capeados':40,'Platanos fritos':38,'Platanos en Hojuela':35,'Wafles':90};
+    const opciones={coberturas:['nutella','lechera','cajeta','hershey','queso philadelphia','miel de maple','mermelada de fresa'],frutas:['kiwi','platano','fresa','frutos rojos','durazno'],topping:['nuez','oreo','chispas de chocolate','chispas de colores'],helado:['chocolate','fresa','vainilla']};
+    // Elementos
+    const catEl=document.getElementById('categorias'),prodEl=document.getElementById('productos');
+    const cartBody=document.getElementById('carrito-body'),totalEl=document.getElementById('total');
+    const ticketEl=document.getElementById('ticket'),ventasDiaEl=document.getElementById('ventas-dia');
+    const genBtn=document.getElementById('gen-ticket'),printTicketBtn=document.getElementById('print-ticket');
+    const printDailyBtn=document.getElementById('print-daily'),clearDayBtn=document.getElementById('clear-day');
+    const modal=document.getElementById('modal-waffle'),cov1=document.getElementById('cov1'),cov2=document.getElementById('cov2');
+    const fruit=document.getElementById('fruit'),topping=document.getElementById('topping'),ice=document.getElementById('ice');
+    const addW=document.getElementById('add-waffle'),closeW=document.getElementById('close-waffle');
+    let carrito=[],ventasDia=0,historialTickets=[],catActiva='COMIDA';
+    function initTabs(){Object.keys(menu).forEach(c=>{const t=document.createElement('div');t.className='tab';t.textContent=c.replace('_',' ');t.onclick=()=>{catActiva=c;setActive();renderProds();};catEl.appendChild(t);});setActive();}
+    function setActive(){Array.from(catEl.children).forEach((t,i)=>t.classList.toggle('active',Object.keys(menu)[i]===catActiva));}
+    function renderProds(){prodEl.innerHTML='';menu[catActiva].forEach(p=>{const d=document.createElement('div');d.className='producto';d.innerHTML=`<h3>${p}</h3><p>$${precios[p]}</p><button>Agregar</button>`;d.querySelector('button').onclick=()=>p==='Wafles'?openModal():addCart(p);prodEl.appendChild(d);});}
+    function openModal(){[cov1,cov2].forEach(s=>{s.innerHTML='';opciones.coberturas.forEach(o=>s.add(new Option(o,o)));});[fruit,topping,ice].forEach((s,i)=>{s.innerHTML='';opciones[['frutas','topping','helado'][i]].forEach(o=>s.add(new Option(o,o)));});modal.style.display='flex';}
+    addW.onclick=()=>{const desc=`Wafles (${cov1.value},${cov2.value};${fruit.value};${topping.value};${ice.value})`;addCart(desc);modal.style.display='none';};closeW.onclick=()=>modal.style.display='none';
+    function addCart(desc){const price=precios[Object.keys(precios).find(k=>desc.startsWith(k))]||precios['Wafles'];carrito.push({desc,qty:1,subtotal:price});renderCart();}
+    function renderCart(){cartBody.innerHTML='';let tot=0;carrito.forEach((it,i)=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${it.desc}</td><td>${it.qty}</td><td>$${it.subtotal}</td><td><button class='remove-btn' onclick='removeItem(${i})'>×</button></td>`;cartBody.appendChild(tr);tot+=it.subtotal;});totalEl.textContent=tot.toFixed(2);}
+    window.removeItem=i=>{carrito.splice(i,1);renderCart();};
+    genBtn.onclick=()=>{if(!carrito.length)return alert('Carrito vacío');let txt='--- Ticket Michel el Tío ---\n';carrito.forEach(it=>txt+=`${it.desc} = $${it.subtotal}\n`);txt+='---------------------------\nTOTAL: $'+totalEl.textContent;historialTickets.push({contenido:txt,total:parseFloat(totalEl.textContent),fecha:new Date().toLocaleString()});ticketEl.textContent=txt;ventasDia+=parseFloat(totalEl.textContent);ventasDiaEl.textContent=ventasDia.toFixed(2);carrito=[];renderCart();};
+    printTicketBtn.onclick=()=>{if(!ticketEl.textContent)return;const w=window.open('');w.document.write(`<pre>${ticketEl.textContent}</pre>`);w.print();w.close();};
+    printDailyBtn.onclick=()=>{if(!historialTickets.length)return alert('No hay tickets para imprimir.');let resumen='<h2>Resumen Diario - Michel el Tío</h2><p>'+new Date().toLocaleDateString()+'</p>';historialTickets.forEach((t,i)=>resumen+=`<hr><p><strong>Ticket ${i+1}</strong><br>${t.contenido.replace(/\n/g,'<br>')}</p>`);resumen+=`<hr><h3>Total del Día: $${ventasDia.toFixed(2)}</h3>`;const w=window.open('');w.document.write(resumen);w.print();w.close();};
+    clearDayBtn.onclick=()=>{if(!historialTickets.length)return alert('No hay datos que borrar.');printDailyBtn.onclick();historialTickets=[];ventasDia=0;ventasDiaEl.textContent='0.00';ticketEl.textContent='Aquí aparecerá el ticket.';};
+    initTabs();renderProds();
   </script>
 </body>
 </html>
